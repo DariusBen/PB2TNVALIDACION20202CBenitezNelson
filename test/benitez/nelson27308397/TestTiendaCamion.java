@@ -25,6 +25,12 @@ public class TestTiendaCamion {
 	@Test
 	public void queAlArirUnaCajaLaListaDeVentaEsteVacia() {
 		
+		TiendaCamion TC = new TiendaCamion("0001111");
+		
+		TC.abrirCaja();
+		
+		assertEquals(0,TC.cantidadVentasCamionTienda());
+		
 	}
 
 }

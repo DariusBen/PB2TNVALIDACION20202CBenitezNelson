@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
+
 public class Empresa {
 
 	// completar la clase Empresa
@@ -14,27 +15,47 @@ public class Empresa {
 	// conveniente
 	private String nombre;
 	private HashMap<Integer, Camion> flota;
+	private int cantidadDeCamiones = 0;
+	
 
 	public Empresa() {
 
 	}
 
+	public Empresa(String nombre) {
+
+		this.nombre = nombre;
+		flota = new HashMap<Integer,Camion>();
+	}
+
 	public void agregarCamion(Camion camion) {
 
-		// se agrega uncamion el primer camion tiene como identificador 0 el el segundo
-		// 1 2 3.4
+		if(!flota.containsKey(camion)) {
+			
+			cantidadDeCamiones++;
+			
+			flota.put(cantidadDeCamiones, camion);
+
+		}
 
 	}
 
 	public Integer cantidadDeCamiones() {
 
-		return null;
+		return cantidadDeCamiones;
 	}
 
 	public TreeSet<Camion> obtenerTiendascamionOrdenadoPorPatente() {
+		TreeSet<Camion> flotaTotal = new TreeSet<Camion>(new ordenarPorPatente());
+	
 		
-		
-		return null;
+
+		for (Map.Entry<Integer, Camion> camion : flota.entrySet()) {
+			
+			flotaTotal.add(camion.getValue());
+		}
+	
+		return flotaTotal;
 	}
 
 }

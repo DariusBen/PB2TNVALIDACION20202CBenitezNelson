@@ -19,6 +19,10 @@ public class Camion  {
 	
 	public Camion (String patente) {
 	
+			this.patente = patente;
+			
+			this.listaProductos = new ArrayList<Producto>();
+			
 	}
 	
 	
@@ -28,22 +32,51 @@ public class Camion  {
 		 *   
 		 * 
 		 */
-		
-		
+		if (!listaProductos.contains(producto))
+		{
+			listaProductos.add(producto);
+		}
 		return null;
 	
 	}
 	
 	
-	public Producto descargarProducto(Integer idProducto) {
+	public Producto descargarProducto(Integer idProducto) throws ProductoInexistenteException {
 	
 		/*
 		 * buesca y un producto por su id y devuelve el producto encontrado
 		 * por otro lado elimina dicho producto de la coleccion
 		 * encaso que el idProducto no se encuentre retorna una exception ProductoInexistenteException
 		 */
-		
-	return null;
+		  Producto productoReturn = null ;
+		  int indiceAEliminar = 0;
+		  
+		  for (Producto productoAux : listaProductos) {
+			  
+			   System.out.print(productoAux.getId());
+			   
+	            if (productoAux.getId() == idProducto)
+	            {
+	      
+	            	productoReturn = productoAux;
+            	
+	            }
+			}
+
+
+		  	if (productoReturn != null)
+		  	{
+
+		  		System.out.print(productoReturn.getId());
+
+		  		listaProductos.remove(productoReturn);
+	
+		  		return productoReturn;
+		  		
+			}else {
+				throw new ProductoInexistenteException("Producto Inexistente");
+			}
+
 	}
 	
 
